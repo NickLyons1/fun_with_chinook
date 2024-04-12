@@ -26,9 +26,10 @@ async function getDBConnection() {
   return db;
 }
 
-app.get("/public/invoice", async (req, res) => {
+app.get("/invoices", async (req, res) => {
   res.send("Hello, World!");
   let db = await getDBConnection();
+  //cannot get the Invoice because we don't know the name of the table "Invoice", had to download the sqlitebrowser.
   const sqlString = "SELECT * FROM Invoice";
   let rows = await db.all(sqlString);
   console.log(rows);
