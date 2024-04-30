@@ -26,16 +26,24 @@ async function getDBConnection() {
   return db;
 }
 
-app.get("/invoices", async (req, res) => {
-  res.send("Hello, World!");
+app.get('/invoices_items', async (req, res) => {
   let db = await getDBConnection();
   //cannot get the Invoice because we don't know the name of the table "Invoice", had to download the sqlitebrowser.
   const sqlString = "SELECT * FROM Invoice";
   let rows = await db.all(sqlString);
-  console.log(rows);
+  res.json(rows);
   
 });
 
+async function fetchItems(){
+  const url = 'http://127.0.0.1:3000/invoices.html';
+  const respose = await fetch(url);
+  let data = await response.json();
+  console.log(data);
+  app.appendChild(document.createTextNode(JSON.stringify(data)));
+}
+
+app.get
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

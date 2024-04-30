@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Items Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .invoice-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .invoice-item h2 {
+            margin-top: 0;
+        }
+
+        .invoice-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="invoice-items-container">
+        <div class="invoice-item">
+            <h2>Static Item</h2>
+            <p>Invoice ID: 100</p>
+            <p>Track ID: 345</p>
+            <p>Unit Price: $free.99</p>
+            <p>Quantity: 1</p>
+        </div>
+        <!-- Invoice items will be inserted here -->
+    </div>
+
+    <script>
+        // Demo data array
+        const invoiceItemsData = [
+            {
+                InvoiceItemId: 1,
+                InvoiceId: 101,
+                TrackId: 345,
+                UnitPrice: 1.99,
+                Quantity: 1,
+            },
+            {
+                InvoiceItemId: 2,
+                InvoiceId: 102,
+                TrackId: 346,
+                UnitPrice: 0.99,
+                Quantity: 3,
+            },
+            {
+                InvoiceItemId: 3,
+                InvoiceId: 103,
+                TrackId: 347,
+                UnitPrice: 1.49,
+                Quantity: 2,
+            },
+        ];
+
+        // Function to display invoice items
+        function displayInvoiceItems(items) {
+            const container = document.getElementById("invoice-items-container");
+            items.forEach(item => {
+                const invoiceItemDiv = document.createElement("div");
+                invoiceItemDiv.classList.add("invoice-item");
+                invoiceItemDiv.innerHTML = `
+                    <h2>Invoice Item</h2>
+                    <p>Invoice ID: ${item.InvoiceId}</p>
+                    <p>TrackID: ${item.TrackId}</p>
+                    <p>Unit Price: $${item.UnitPrice}</p>
+                    <p>Quantity: ${item.Quantity}</p>
+                `;
+                container.appendChild(invoiceItemDiv);
+            });
+        }
+
+        // Call displayInvoiceItems on page load with demo data
+        window.onload = () => displayInvoiceItems(invoiceItemsData);
+    </script>
+</body>
+
+</html>
